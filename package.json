@@ -1,0 +1,15 @@
+{
+  "name": "ghost",
+  "version": "1.0.0",
+  "description": "A moderation bot for Discord",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "BasilT",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^11.4.2",
+    "mongoose": "^5.4.1"
+  }
+}

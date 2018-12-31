@@ -1,7 +1,7 @@
 const Discord = require("discord.js");
 
 module.exports.run = async(bot, message, args) => {
-    message.reply(`Ghost is on ${message.guilds.count} servers.`);
+    message.reply(`Ghost is on ${message.guilds.size} servers.`);
 };
 
 module.exports.help = {

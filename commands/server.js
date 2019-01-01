@@ -24,10 +24,12 @@ module.exports.run = async(bot, message, args) => {
 
         if(!args[0]){
             message.channel.send(currentSettingsEmbed);
+            return;
         }
         let type = args[0].toString().toLowerCase();
         if(type === "help"){
             message.channel.send(helpEmbed);
+            return;
         }
         if(type === "update"){
             if(args[1].toString().toLowerCase() === "levelnotifications" || args[1].toString().toLowerCase() === "leveltype"){

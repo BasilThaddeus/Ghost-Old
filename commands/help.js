@@ -17,7 +17,7 @@ module.exports.run = async(bot, message, args) => {
     let embed2 = new Discord.RichEmbed() // Economy Embed
         .setAuthor(message.author.username, message.author.displayAvatarURL)
         .setTitle("Economy")
-        .setDescription(`**${prefix}money** *[User]* - Checks how many coins a user has`)
+        .setDescription(`**${prefix}bank** *[User/Deposit/Withdraw] [#/All]* **-** A banking system where you can see others money, deposit, and withdraw money.\n**${prefix}money** *[User]* **-** Checks how many coins a user has`)
         .setColor("#fdff00")
         .setFooter(`Italicized parts are optional arguments | ${message.guild.name}`);
 
@@ -42,28 +42,30 @@ module.exports.run = async(bot, message, args) => {
         .setColor("#ffffff")
         .setFooter(`Italicized parts are optional arguments | ${message.guild.name}`);
 
+    let type = args[0].toString().toLowerCase();
+
     if(!args[0]){
         message.channel.send(embed1);
         return;
     }
-    if(args[0].toString().toLowerCase() === "economy"){
+    if(type === "economy" || type === "eco"){
         message.channel.send(embed2);
         return;
     }
-    if(args[0].toString().toLowerCase() === "moderation"){
+    if(type === "moderation" || type === "mod"){
         message.channel.send(embed3);
         return;
     }
-    if(args[0].toString().toLowerCase() === "fun"){
+    if(type === "fun"){
         message.channel.send(embed4);
         return;
     }
-    if(args[0].toString().toLowerCase() === "settings"){
+    if(type === "settings" || type === "set" || type === "server"){
         message.channel.send(embed5);
     }
 };
 
 module.exports.help = {
     name: "help",
-    aliases: [""]
+    aliases: []
 };

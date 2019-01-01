@@ -6,7 +6,7 @@ const Money = require("../models/money.js");
 const config = require("../configs/botConfig.json");
 let prefix = config.prefix;
 
-mongoose.connect("mongodb://localhost:27017/Players", {
+mongoose.connect("mongodb://localhost:27017/Servers", {
     useNewUrlParser: true
 });
 

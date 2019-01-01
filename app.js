@@ -28,7 +28,7 @@ let cooldownSec = 10;
 let commandSec = 5;
 
 // Mongoose
-mongoose.connect("mongodb://localhost:27017/Players", {
+mongoose.connect("mongodb://localhost:27017/Servers", {
     useNewUrlParser: true
 });
 

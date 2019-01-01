@@ -42,12 +42,12 @@ module.exports.run = async(bot, message, args) => {
         .setColor("#ffffff")
         .setFooter(`Italicized parts are optional arguments | ${message.guild.name}`);
 
-    let type = args[0].toString().toLowerCase();
-
     if(!args[0]){
         message.channel.send(embed1);
         return;
     }
+
+    let type = args[0].toString().toLowerCase();
     if(type === "economy" || type === "eco"){
         message.channel.send(embed2);
         return;

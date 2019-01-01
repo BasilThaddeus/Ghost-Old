@@ -7,8 +7,14 @@ const Leveling = require("../models/leveling.js");
 
 module.exports.run = async(bot, message, args) => {
     let mUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
-    if(mUser) mUser = mUser.id;
+    let mName;
+    if(mUser) {
+        if(mUser.user.bot) return message.reply("you cannot check the level of a bot.");
+        mName = mUser.user.username;
+        mUser = mUser.id;
+    }
     if(!args[0]){
+        mName = message.author.username;
         mUser = message.author.id;
     }
     if(!mUser) return message.reply("this user does not exist. Please try again by mentioning them (@).");
@@ -19,6 +25,7 @@ module.exports.run = async(bot, message, args) => {
         let xp = level.xp;
 
         let embed = new Discord.RichEmbed()
+            .setTitle(`${mName}'s Levels`)
             .setColor("#00ff16")
             .setDescription(`**⬆ Levels**\nLevel ${levels}\nXP ${xp}`)
             .setFooter(message.guild.name);

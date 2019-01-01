@@ -35,6 +35,7 @@ mongoose.connect("mongodb://localhost:27017/Players", {
 // Mongoose Models
 const Leveling = require("./models/leveling.js");
 const Money = require("./models/money.js");
+const Server = require("./models/server.js");
 
 const load = async () => {
     readdir("./commands/", (err, files) => {
@@ -102,6 +103,18 @@ bot.on("message", async message => {
         }
         cmdFile.run(bot, message, args);
     } else {
+        Server.findOne({serverID: message.guild.id}, (err, server) => {
+            if(err) console.log(err);
+            if(!server){
+                const newServer = new Money({
+                    serverID: message.guild.id,
+                    levelNotifications: true,
+                    levelType: "channel",
+                });
+                newServer.save().catch(err => console.log(err));
+            }
+        });
+
         Money.findOne({userID: message.author.id, serverID: message.guild.id}, (err, money) => {
            if(err) console.log(err);
            if(!money){

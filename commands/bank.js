@@ -34,8 +34,10 @@ module.exports.run = async(bot, message, args) => {
             return message.channel.send(bankEmbed);
         }
 
+        let type = args[0].toString().toLowerCase();
+
         if(err) console.log(err);
-        if(args[0].toString().toLowerCase() === "deposit") {
+        if(type === "deposit" || type === "dep" || type === "d") {
             if (money.bank === money.bankMax) return message.reply(`your bank is full.`);
             if (!isNaN(args[1])) {
                 let deposit = Math.floor(args[1]);
@@ -74,7 +76,7 @@ module.exports.run = async(bot, message, args) => {
                 money.save().catch(err => console.log(err));
             }
         }
-        if(args[0].toString().toLowerCase() === "withdraw") {
+        if(type === "withdraw" || type === "with" || type === "w") {
             if(!isNaN(args[1])) {
                 let withdrawAmount = Math.floor(args[1]);
                 if(args[1] < 0) return message.reply("you cannot deposit coins under 0");

@@ -5,7 +5,7 @@ const proc = require("process");
 module.exports.run = async(bot, message, args) => {
     if(message.author.id !== "129649779134300161") return;
     if(args[0] === "update"){
-        shell.exec(`cd ~/Ghost/ && git pull origin master && node app.js && kill ${proc.id}`);
+        shell.exec(`cd ~/Ghost/ && git pull origin master && node app.js`);
         message.reply("executed update.")
     }
 };

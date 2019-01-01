@@ -106,7 +106,7 @@ bot.on("message", async message => {
         Server.findOne({serverID: message.guild.id}, (err, server) => {
             if(err) console.log(err);
             if(!server){
-                const newServer = new Money({
+                const newServer = new Server({
                     serverID: message.guild.id,
                     levelNotifications: true,
                     levelType: "channel",

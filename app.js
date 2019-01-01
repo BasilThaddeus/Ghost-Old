@@ -19,6 +19,7 @@ const bot = new Discord.Client();
 const readdir = promisify(fs.readdir);
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
+let date = new Date();
 
 // Cooldowns
 let xpCooldown = new Set();
@@ -76,7 +77,7 @@ bot.on("message", async message => {
         .setAuthor(message.author.username, message.author.displayAvatarURL)
         .setColor("#f40600")
         .setDescription(`**Your commands are on cooldown!**\nPlease wait the *5 second* cooldown before using another command.`)
-        .setFooter(message.guild.name);
+        .setFooter(date.toLocaleString());
 
     if(message.author.bot) return;
     if(message.channel.type === 'dm') return message.reply(`Please use a Discord server which I am in.`);
@@ -150,6 +151,20 @@ bot.on("message", async message => {
                     level.level = level.level + 1;
                     level.xp = 0;
                     level.save().catch(err => console.log(err));
+                    let levelUP = new Discord.RichEmbed()
+                        .setAuthor(message.author.username, message.author.displayAvatarURL)
+                        .setColor("#f400b4")
+                        .setDescription(`**🆙 Level Up!**\nCongratulations ${message.author.username}! You are now level ${level.level}.`)
+                        .setFooter(message.guild.name);
+
+                    Server.findOne({serverID: message.guild.id}, (err, server) => {
+                        if(err) console.log(err);
+                        if(server.levelNotifications === false) return;
+                        if(server.levelNotifications){
+                            if(server.levelType === "pm") return message.author.send(levelUP);
+                            if(server.levelType === "channel") return message.channel.send(levelUP);
+                        }
+                    });
                 }
             }
         });

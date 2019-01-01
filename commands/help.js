@@ -1,30 +1,30 @@
 const Discord = require("discord.js");
 const config = require("../configs/botConfig.json");
-let prefix = config.prefix;
+let p = config.prefix;
 
 module.exports.run = async(bot, message, args) => {
     // Embeds
     let embed1 = new Discord.RichEmbed() // Main Embed
         .setAuthor(message.author.username, message.author.displayAvatarURL)
         .setTitle("Command Groups")
-        .addField("💰 Economy", `*${prefix}help economy*`, true)
-        .addField("🛠 Moderation", `*${prefix}help moderation*`, true)
-        .addField("🍬 Fun", `*${prefix}help fun*`, true)
-        .addField("⚙ Server Settings", `*${prefix}help settings*`, true)
+        .addField("💰 Economy", `*${p}help economy*`, true)
+        .addField("🛠 Moderation", `*${p}help moderation*`, true)
+        .addField("🍬 Fun", `*${p}help fun*`, true)
+        .addField("⚙ Server Settings", `*${p}help settings*`, true)
         .setColor("#00f47a")
         .setFooter(message.guild.name);
 
     let embed2 = new Discord.RichEmbed() // Economy Embed
         .setAuthor(message.author.username, message.author.displayAvatarURL)
         .setTitle("Economy")
-        .setDescription(`**${prefix}bank** *[User/Deposit/Withdraw] [#/All]* **-** A banking system where you can see others money, deposit, and withdraw money.\n**${prefix}money** *[User]* **-** Checks how many coins a user has`)
+        .setDescription(`**${p}bank** *[@User/UserID/Deposit/Withdraw] [#/All]* **-** A banking system where you can see others money, deposit, and withdraw money.\n**${p}money** *[@User/UserID]* **-** Checks the balance of a user.`)
         .setColor("#fdff00")
         .setFooter(`Italicized parts are optional arguments | ${message.guild.name}`);
 
     let embed3 = new Discord.RichEmbed() // Moderation Embed
         .setAuthor(message.author.username, message.author.displayAvatarURL)
         .setTitle("Moderation")
-        .setDescription(`TO BE ADDED`)
+        .setDescription(`**${p}ban** [@User/UserID] *[Reason]* **-** Ban a user for an optional reason.\n**${p}unban** [UserID] *[Reason]* **-** Unban a user for an optional reason.\n**${p}kick** [@User/UserID] *[Reason]* - Kicks a user for an optional reason.`)
         .setColor("#ff0043")
         .setFooter(`Italicized parts are optional arguments | ${message.guild.name}`);
 
@@ -38,7 +38,7 @@ module.exports.run = async(bot, message, args) => {
     let embed5 = new Discord.RichEmbed() // Server Settings Embed
         .setAuthor(message.author.username, message.author.displayAvatarURL)
         .setTitle("Server Settings")
-        .setDescription(`TO BE ADDED`)
+        .setDescription(`**${p}server *[Help/Update] [Setting] [True/False/Channel/Pm]* **-** A way to enable/disable different bot settings for your server.`)
         .setColor("#ffffff")
         .setFooter(`Italicized parts are optional arguments | ${message.guild.name}`);
 

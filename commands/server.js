@@ -41,12 +41,14 @@ module.exports.run = async(bot, message, args) => {
                         server.levelNotifications = true;
                         server.save().catch(err => console.log(err));
                         message.reply("`levelNotifications` has successfully been enabled.");
+                        return;
                     }
                     if(args[2].toString().toLowerCase() === "false"){
                         if(server.levelNotifications === false) return message.reply("`levelNotifications` is already disabled.");
                         server.levelNotifications = false;
                         server.save().catch(err => console.log(err));
                         message.reply("`levelNotifications` has successfully been disabled.");
+                        return;
                     } else {
                         message.reply("please add either `true` or `false` to the command.");
                     }
@@ -57,12 +59,14 @@ module.exports.run = async(bot, message, args) => {
                         server.levelType = "pm";
                         server.save().catch(err => console.log(err));
                         message.reply("`levelType` has successfully been updated to `pm` mode.");
+                        return;
                     }
                     if(args[2].toString().toLowerCase() === "channel"){
                         if(server.levelType === "channel") return message.reply("`levelType` is already on `channel` mode.");
                         server.levelType = "channel";
                         server.save().catch(err => console.log(err));
                         message.reply("`levelType` has successfully been updated to `channel` mode.");
+                        return;
                     } else {
                         message.reply("please add either `pm` or `channel` to the command.")
                     }

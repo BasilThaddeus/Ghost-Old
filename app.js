@@ -83,7 +83,7 @@ bot.on("message", async message => {
     if(message.channel.type === 'dm') return message.reply(`Please use a Discord server which I am in.`);
 
     let content = message.content.split(" ");
-    let command = content[0];
+    let command = content[0].toLowerCase();
     let args = content.slice(1);
     let prefix = botConfig.prefix;
     let cmdFile = bot.commands.get(command.slice(prefix.length)) || bot.commands.get(bot.aliases.get(command.slice(prefix.length)));
@@ -111,6 +111,10 @@ bot.on("message", async message => {
                     serverID: message.guild.id,
                     levelNotifications: true,
                     levelType: "channel",
+                    joinMessages: false,
+                    joinChannelID: 0,
+                    leaveMessages: false,
+                    leaveChannelID: 0,
                 });
                 newServer.save().catch(err => console.log(err));
             }

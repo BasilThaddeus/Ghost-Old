@@ -24,7 +24,7 @@ module.exports.run = async(bot, message, args) => {
     let embed3 = new Discord.RichEmbed() // Moderation Embed
         .setAuthor(message.author.username, message.author.displayAvatarURL)
         .setTitle("Moderation")
-        .setDescription(`**${p}ban** [@User/UserID] *[Reason]* **-** Ban a user for an optional reason.\n**${p}unban** [UserID] *[Reason]* **-** Unban a user for an optional reason.\n**${p}kick** [@User/UserID] *[Reason]* - Kicks a user for an optional reason.`)
+        .setDescription(`**${p}ban** [@User/UserID] *[Reason]* **-** Ban a user for an optional reason.\n**${p}unban** [UserID] *[Reason]* **-** Unban a user for an optional reason.\n**${p}kick** [@User/UserID] *[Reason]* **-** Kicks a user for an optional reason.\n**${p}purge** [Amount] **-** Clears chat for up to 100 messages.`)
         .setColor("#ff0043")
         .setFooter(`Italicized parts are optional arguments | ${message.guild.name}`);
 

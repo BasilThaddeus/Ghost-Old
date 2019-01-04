@@ -1,9 +1,12 @@
 const Discord = require("discord.js");
 const mongoose = require("mongoose");
+const Jimp = require("jimp");
+
+const Leveling = require("../models/leveling.js");
+
 mongoose.connect("mongodb://localhost:27017/Servers", {
     useNewUrlParser: true
 });
-const Leveling = require("../models/leveling.js");
 
 module.exports.run = async(bot, message, args) => {
     let mUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
@@ -19,7 +22,26 @@ module.exports.run = async(bot, message, args) => {
     }
     if(!mUser) return message.reply("this user does not exist. Please try again by mentioning them (@).");
 
-    Leveling.findOne({userID: mUser, serverID: message.guild.id}, (err, level) => {
+    Leveling.findOne({serverID: message.guild.id, userID: mUser}, (err, level) => {
+        new Jimp(275, 125, "#404040", (err, image) => {
+            image.blur(10);
+
+            Jimp.loadFont(Jimp.FONT_SANS_16_WHITE).then(font => {
+                image.print(font, 10, 45, message.guild.name);
+                image.print(font, 10, 75, "Level " + level.level);
+                image.print(font, 10, 95, "XP " + level.xp);
+                Jimp.loadFont(Jimp.FONT_SANS_32_WHITE).then(font => {
+                    image.print(font, 10, 10, mName);
+                    image.print(font, 0, 35, "________________");
+                    let file = "./images/" + message.author.id + ".png";
+                    image.write(file);
+                    message.channel.send({file: file});
+                });
+            });
+        });
+    });
+
+    /*Leveling.findOne({userID: mUser, serverID: message.guild.id}, (err, level) => {
         if(err) console.log(err);
         let levels = level.level;
         let xp = level.xp;
@@ -30,7 +52,7 @@ module.exports.run = async(bot, message, args) => {
             .setDescription(`**⬆ Levels**\nLevel ${levels}\nXP ${xp}`)
             .setFooter(message.guild.name);
         message.channel.send(embed);
-    });
+    });*/
 };
 
 module.exports.help = {

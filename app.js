@@ -22,11 +22,11 @@ bot.aliases = new Discord.Collection();
 let date = new Date();
 
 // Cooldowns
-let xpCooldown = new Set();
-let cCooldown = new Set();
-let cSpamCooldown = new Set();
-let cooldownSec = 10;
-let commandSec = 5;
+let xpCooldown = new Set(); // XP
+let cCooldown = new Set();// Commands
+let cSpamCooldown = new Set(); // 2nd Command Cooldown
+let cooldownSec = 10; // XP Cooldown
+let commandSec = 5; // Command Cooldown
 
 // Mongoose
 mongoose.connect("mongodb://localhost:27017/Servers", {

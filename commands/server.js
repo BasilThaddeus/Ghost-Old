@@ -2,13 +2,11 @@ const Discord = require("discord.js");
 const mongoose = require("mongoose");
 const Servers = require("../models/server.js");
 
-let prefix = require("../configs/botConfig.json").prefix;
-
 mongoose.connect("mongodb://localhost:27017/Servers", {
     useNewUrlParser: true
 });
 
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async(bot, message, args, prefix) => {
     Servers.findOne({serverID: message.guild.id}, (err, server) => {
         let c1 = `<#${server.joinChannelID}>`;
         let c2 = `<#${server.leaveChannelID}>`;

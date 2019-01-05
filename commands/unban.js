@@ -1,8 +1,7 @@
 const Discord = require("discord.js");
-let prefix = require("../configs/botConfig.json").prefix;
 let date = new Date();
 
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async(bot, message, args, prefix) => {
     if(!args[0]) return message.reply(`please use the command format: \`${prefix}unban [User] [Reason (Optional)]\``);
     let mUser = args[0];
     if(message.guild.member(message.guild.members.get(args[0]))) return message.reply("the specified user is not banned.");

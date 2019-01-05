@@ -1,8 +1,8 @@
 const Discord = require("discord.js");
 const config = require("../configs/botConfig.json");
-let p = config.prefix;
 
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async(bot, message, args, prefix) => {
+    let p = prefix;
     // Embeds
     let embed1 = new Discord.RichEmbed() // Main Embed
         .setAuthor(message.author.username, message.author.displayAvatarURL)
@@ -38,7 +38,7 @@ module.exports.run = async(bot, message, args) => {
     let embed5 = new Discord.RichEmbed() // Server Settings Embed
         .setAuthor(message.author.username, message.author.displayAvatarURL)
         .setTitle("Server Settings")
-        .setDescription(`**${p}server** *[Help/Update] [Setting] [True/False/Channel/Pm/ID's]* **-** A way to enable/disable different bot settings for your server.`)
+        .setDescription(`**${p}server** *[Help/Update] [Setting] [True/False/Channel/Pm/ID's]* **-** A way to enable/disable different bot settings for your server.\n**${p}prefix *[Set] [Prefix]* **-** A way to change the prefix of the bot for your server.`)
         .setColor("#ffffff")
         .setFooter(`Italicized parts are optional arguments | ${message.guild.name}`);
 

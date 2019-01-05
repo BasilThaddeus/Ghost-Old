@@ -8,6 +8,7 @@ const serverSchema = mongoose.Schema({
     joinChannelID: String,
     leaveMessages: Boolean,
     leaveChannelID: String,
+    prefix: String
 });
 
 module.exports = mongoose.model("Server", serverSchema);

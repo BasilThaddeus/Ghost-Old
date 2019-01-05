@@ -1,9 +1,8 @@
 const Discord = require("discord.js");
-let prefix = require("../configs/botConfig.json").prefix;
 let owner = require("../configs/botConfig.json").owner;
 let date = new Date();
 
-module.exports.run = async(bot, message, args) => {
+module.exports.run = async(bot, message, args, prefix) => {
     if(!args[0]) return message.reply(`please use the command format: \`${prefix}kick [User] [Reason (Optional)]\``);
     let mUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     if(!mUser) return message.reply("user was not found.");

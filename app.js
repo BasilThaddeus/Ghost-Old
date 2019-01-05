@@ -110,6 +110,10 @@ bot.on("message", async message => {
             server.prefix = "!";
             server.save().catch(err => console.log(err));
         }
+        if(server.prefix !== "!"){
+            server.prefix = "!";
+            server.save().catch(err => console.log(err));
+        }
 
         let content = message.content.split(" ");
         let command = content[0].toLowerCase();

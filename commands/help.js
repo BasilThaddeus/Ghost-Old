@@ -12,12 +12,12 @@ module.exports.run = async(bot, message, args) => {
         .addField("🍬 Fun", `*${p}help fun*`, true)
         .addField("⚙ Server Settings", `*${p}help settings*`, true)
         .setColor("#00f47a")
-        .setFooter(message.guild.name);
+        .setFooter(`Need help from the support server or the bot invite? Type ${p}botinfo`);
 
     let embed2 = new Discord.RichEmbed() // Economy Embed
         .setAuthor(message.author.username, message.author.displayAvatarURL)
-        .setTitle("Economy")
-        .setDescription(`**${p}bank** *[@User/UserID/Deposit/Withdraw] [#/All]* **-** A banking system where you can see others money, deposit, and withdraw money.\n**${p}money** *[@User/UserID]* **-** Checks the balance of a user.`)
+        .setTitle("Economy and Leveling")
+        .setDescription(`**${p}bank** *[@User/UserID/Deposit/Withdraw] [#/All]* **-** A banking system where you can see others money, deposit, and withdraw money.\n**${p}money** *[@User/UserID]* **-** Checks the balance of a user.\n**${p}level** *[@User/UserID] **-** Checks the level of a user.*`)
         .setColor("#fdff00")
         .setFooter(`Italicized parts are optional arguments | ${message.guild.name}`);
 

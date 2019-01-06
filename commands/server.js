@@ -7,6 +7,7 @@ mongoose.connect("mongodb://localhost:27017/Servers", {
 });
 
 module.exports.run = async(bot, message, args, prefix) => {
+    if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you do not have permission to change server settings.");
     Servers.findOne({serverID: message.guild.id}, (err, server) => {
         let c1 = `<#${server.joinChannelID}>`;
         let c2 = `<#${server.leaveChannelID}>`;

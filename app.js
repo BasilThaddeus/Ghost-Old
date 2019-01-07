@@ -106,18 +106,10 @@ bot.on("message", async message => {
             });
             newServer.save().catch(err => console.log(err));
         }
-        if(!server.prefix){
-            server.prefix = "!";
-            server.save().catch(err => console.log(err));
-        }
-        if(server.prefix !== "!"){
-            server.prefix = "!";
-            server.save().catch(err => console.log(err));
-        }
 
         let content = message.content.split(" ");
         let command = content[0].toLowerCase();
-        let prefix = server.prefix;
+        let prefix = "!";
         let args = content.slice(prefix.length);
         let cmdFile = bot.commands.get(command.slice(prefix.length)) || bot.commands.get(bot.aliases.get(command.slice(prefix.length)));
 

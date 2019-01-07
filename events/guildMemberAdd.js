@@ -1,18 +1,18 @@
 const Discord = require("discord.js");
 const mongoose = require("mongoose");
+const Money = require("../models/money.js");
+const Leveling = require("../models/leveling.js");
+const Server = require("../models/server.js");
 
-let prefix = require("../configs/botConfig.json").prefix;
-
-let Server = require("../models/server.js");
 mongoose.connect("mongodb://localhost:27017/Servers", {
     useNewUrlParser: true
 });
 
 module.exports = async(bot, member) => {
-    Server.findOne({serverID: member.guild.id}, (err, server) =>{
-        try {
-            if(server.joinMessages === true){
-                if(server.joinChannelID === "0") return;
+    try {
+        Server.findOne({serverID: member.guild.id}, (err, server) =>{
+            if(server.joinMessages === true) {
+                if (server.joinChannelID === "0") return;
                 let welcomeChannel = member.guild.channels.get(server.joinChannelID);
 
                 let welcomeEmbed = new Discord.RichEmbed()
@@ -22,8 +22,33 @@ module.exports = async(bot, member) => {
                     .setFooter(member.guild.name);
                 welcomeChannel.send(welcomeEmbed);
             }
-        } catch (err) {
-            console.log(err);
-        }
-    });
+        });
+        Money.findOne({serverID: member.guild.id, userID: member.author.id}, (err, money) => {
+            if(err) console.log(err);
+            if(!money){
+                const newMoney = new Money({
+                    userID: message.author.id,
+                    serverID: message.guild.id,
+                    money: 20,
+                    bank: 0,
+                    bankMax: 250,
+                });
+                newMoney.save().catch(err => console.log(err));
+            }
+        });
+        Leveling.findOne({serverID: message.guild.id, userID: message.author.id}, (err, level) => {
+            if (err) console.log(err);
+            if (!level) {
+                const newLevels = new Leveling({
+                    userID: message.author.id,
+                    serverID: message.guild.id,
+                    level: 1,
+                    xp: 0,
+                });
+                newLevels.save().catch(err => console.log(err));
+            }
+        });
+    } catch (err) {
+        console.log(err);
+    }
 };

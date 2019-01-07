@@ -6,6 +6,8 @@ mongoose.connect("mongodb://localhost:27017/Servers", {
 });
 
 module.exports.run = async(bot, message, args) => {
+    return message.reply("this feature is currently disabled.");
+    if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you do not have permission to ban users.");
     Server.findOne({serverID: message.guild.id}, (err, server) => {
         let prefixEmbed = new Discord.RichEmbed()
             .setAuthor(message.author.username, message.author.displayAvatarURL)

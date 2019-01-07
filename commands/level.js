@@ -40,19 +40,6 @@ module.exports.run = async(bot, message, args) => {
             });
         });
     });
-
-    /*Leveling.findOne({userID: mUser, serverID: message.guild.id}, (err, level) => {
-        if(err) console.log(err);
-        let levels = level.level;
-        let xp = level.xp;
-
-        let embed = new Discord.RichEmbed()
-            .setTitle(`${mName}'s Levels`)
-            .setColor("#00ff16")
-            .setDescription(`**⬆ Levels**\nLevel ${levels}\nXP ${xp}`)
-            .setFooter(message.guild.name);
-        message.channel.send(embed);
-    });*/
 };
 
 module.exports.help = {

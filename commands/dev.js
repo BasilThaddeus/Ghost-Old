@@ -12,7 +12,7 @@ function clean(text) {
 module.exports.run = async(bot, message, args) => {
     if(message.author.id !== "129649779134300161") return;
     if(args[0] === "update"){
-        shell.exec(`cd ~/Ghost/ && git pull origin master && pm2 restart app.js`);
+        shell.exec(`cd ~/Ghost/ && git pull origin master && cd ~/Ghost/ && pm2 restart app.js`);
         message.reply("executed update.")
     }
     if(args[0] === "eval"){

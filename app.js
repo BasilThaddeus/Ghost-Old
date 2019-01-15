@@ -7,6 +7,7 @@ const Discord = require("discord.js");
 const fs = require("fs");
 const { promisify } = require("util");
 const mongoose = require("mongoose");
+const DBL = require("dblapi.js");
 
 // Developer ID's
 const developers = ["129649779134300161", "416847732737835008"];
@@ -17,8 +18,21 @@ const botConfig = require("./configs/botConfig.json");
 // Other
 const bot = new Discord.Client();
 const readdir = promisify(fs.readdir);
+const Money = require("./models/money.js");
+const dbl = new DBL(botConfig.dbltoken, {webhookPort: 5000, webhookAuth: "2T9LCOzjmcdtYYHJq8_d9phrBelQJl1hXmwu7CkOKEt1R3nd9QjNzn4tIN_dxhmCr-Rh"});
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
+
+mongoose.connect("mongodb://localhost:27017/Servers", {
+    useNewUrlParser: true
+});
+dbl.webhook.on('vote', vote => {
+    Money.findOne({userID: vote.user}, (err, money) => {
+        money.money = money.money + 100;
+        money.save().catch(err => console.log(err));
+    });
+    console.log(`${vote.user} has voted.`);
+});
 
 const load = async () => {
     readdir("./commands/", (err, files) => {

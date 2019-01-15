@@ -47,7 +47,6 @@ module.exports = async(bot, message) => {
         if(!money){
             const newMoney = new Money({
                 userID: message.author.id,
-                serverID: message.guild.id,
                 money: 20,
                 bank: 0,
                 bankMax: 250,

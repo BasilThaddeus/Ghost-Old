@@ -27,8 +27,7 @@ module.exports = async(bot, member) => {
             if(err) console.log(err);
             if(!money){
                 const newMoney = new Money({
-                    userID: message.author.id,
-                    serverID: message.guild.id,
+                    userID: member.author.id,
                     money: 20,
                     bank: 0,
                     bankMax: 250,
@@ -36,12 +35,12 @@ module.exports = async(bot, member) => {
                 newMoney.save().catch(err => console.log(err));
             }
         });
-        Leveling.findOne({serverID: message.guild.id, userID: message.author.id}, (err, level) => {
+        Leveling.findOne({serverID: member.guild.id, userID: member.author.id}, (err, level) => {
             if (err) console.log(err);
             if (!level) {
                 const newLevels = new Leveling({
-                    userID: message.author.id,
-                    serverID: message.guild.id,
+                    userID: member.author.id,
+                    serverID: member.guild.id,
                     level: 1,
                     xp: 0,
                 });

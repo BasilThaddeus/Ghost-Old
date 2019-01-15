@@ -7,7 +7,7 @@ module.exports = async(bot) => {
 
     let i = 0;
     setInterval(function(){
-        let status = ["!help", `on ${bot.guilds.size} servers`];
+        let status = ["shutting down in 1 day for redesign."];
         bot.user.setActivity(status[i]);
         i++;
         if(i === status.length) i = 0;

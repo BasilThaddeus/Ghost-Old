@@ -1,9 +1,6 @@
 const Discord = require("discord.js");
 const Server = require("../models/server.js");
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/Servers", {
-    useNewUrlParser: true
-});
 
 module.exports.run = async(bot, message, args) => {
     return message.reply("this feature is currently disabled.");

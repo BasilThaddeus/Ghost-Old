@@ -3,10 +3,6 @@ const mongoose = require("mongoose");
 
 const Money = require("../models/money.js");
 
-mongoose.connect("mongodb://localhost:27017/Servers", {
-    useNewUrlParser: true
-});
-
 module.exports.run = async(bot, message, args) => {
     let mUser = message.guild.member(message.mentions.users.first() || message.guild.members.get(args[0]));
     let mName;

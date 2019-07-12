@@ -2,10 +2,6 @@ const Discord = require("discord.js");
 const mongoose = require("mongoose");
 const Servers = require("../models/server.js");
 
-mongoose.connect("mongodb://localhost:27017/Servers", {
-    useNewUrlParser: true
-});
-
 module.exports.run = async(bot, message, args, prefix) => {
     if(!message.member.hasPermission("MANAGE_GUILD")) return message.reply("you do not have permission to change server settings.");
     Servers.findOne({serverID: message.guild.id}, (err, server) => {

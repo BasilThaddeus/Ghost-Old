@@ -33,6 +33,7 @@ dbl.webhook.on('vote', vote => {
     });
     console.log(`${vote.user} has voted.`);
 });
+mongoose.disconnect();
 
 const load = async () => {
     readdir("./commands/", (err, files) => {

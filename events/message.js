@@ -4,10 +4,6 @@ const mongoose = require("mongoose");
 const Leveling = require("../models/leveling.js");
 const Money = require("../models/money.js");
 
-mongoose.connect("mongodb://localhost:27017/Servers", {
-    useNewUrlParser: true
-});
-
 // Cooldowns
 let xpCoolUsers = new Set(); // XP Cooldown Users
 let xpCooldown = 5; // XP Cooldown

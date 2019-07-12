@@ -4,10 +4,6 @@ const Money = require("../models/money.js");
 const Leveling = require("../models/leveling.js");
 const Server = require("../models/server.js");
 
-mongoose.connect("mongodb://localhost:27017/Servers", {
-    useNewUrlParser: true
-});
-
 module.exports = async(bot, member) => {
     try {
         Server.findOne({serverID: member.guild.id}, (err, server) =>{

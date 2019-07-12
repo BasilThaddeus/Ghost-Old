@@ -1,5 +1,6 @@
 const Discord = require("discord.js");
 const mongoose = require("mongoose");
+mongoose.connection();
 
 const Leveling = require("../models/leveling.js");
 const Money = require("../models/money.js");

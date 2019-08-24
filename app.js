@@ -19,7 +19,7 @@ const botConfig = require("./configs/botConfig.json");
 const bot = new Discord.Client();
 const readdir = promisify(fs.readdir);
 const Money = require("./models/money.js");
-const dbl = new DBL(botConfig.dbltoken, {webhookPort: 5000, webhookAuth: "2T9LCOzjmcdtYYHJq8_d9phrBelQJl1hXmwu7CkOKEt1R3nd9QjNzn4tIN_dxhmCr-Rh"});
+const dbl = new DBL(botConfig.dbltoken, {webhookPort: 5000, webhookAuth: "no no you no see dis"});
 bot.commands = new Discord.Collection();
 bot.aliases = new Discord.Collection();
 
